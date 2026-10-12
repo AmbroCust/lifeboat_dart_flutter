@@ -45,11 +45,16 @@ Map<String, dynamic> _$LobbyUpdatedToJson(LobbyUpdated instance) =>
       'runtimeType': instance.$type,
     };
 
-GameStarted _$GameStartedFromJson(Map<String, dynamic> json) =>
-    GameStarted($type: json['runtimeType'] as String?);
+GameStarted _$GameStartedFromJson(Map<String, dynamic> json) => GameStarted(
+  json['roomCode'] as String,
+  $type: json['runtimeType'] as String?,
+);
 
 Map<String, dynamic> _$GameStartedToJson(GameStarted instance) =>
-    <String, dynamic>{'runtimeType': instance.$type};
+    <String, dynamic>{
+      'roomCode': instance.roomCode,
+      'runtimeType': instance.$type,
+    };
 
 LobbyError _$LobbyErrorFromJson(Map<String, dynamic> json) =>
     LobbyError(json['reason'] as String, $type: json['runtimeType'] as String?);

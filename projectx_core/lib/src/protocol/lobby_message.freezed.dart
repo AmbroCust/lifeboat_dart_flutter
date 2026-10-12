@@ -436,12 +436,12 @@ return lobbyError(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( String roomCode)?  roomCreated,TResult Function( String roomCode,  List<LobbyPlayer> players)?  lobbyUpdated,TResult Function()?  gameStarted,TResult Function( String reason)?  lobbyError,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( String roomCode)?  roomCreated,TResult Function( String roomCode,  List<LobbyPlayer> players)?  lobbyUpdated,TResult Function( String roomCode)?  gameStarted,TResult Function( String reason)?  lobbyError,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case RoomCreated() when roomCreated != null:
 return roomCreated(_that.roomCode);case LobbyUpdated() when lobbyUpdated != null:
 return lobbyUpdated(_that.roomCode,_that.players);case GameStarted() when gameStarted != null:
-return gameStarted();case LobbyError() when lobbyError != null:
+return gameStarted(_that.roomCode);case LobbyError() when lobbyError != null:
 return lobbyError(_that.reason);case _:
   return orElse();
 
@@ -460,12 +460,12 @@ return lobbyError(_that.reason);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( String roomCode)  roomCreated,required TResult Function( String roomCode,  List<LobbyPlayer> players)  lobbyUpdated,required TResult Function()  gameStarted,required TResult Function( String reason)  lobbyError,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( String roomCode)  roomCreated,required TResult Function( String roomCode,  List<LobbyPlayer> players)  lobbyUpdated,required TResult Function( String roomCode)  gameStarted,required TResult Function( String reason)  lobbyError,}) {final _that = this;
 switch (_that) {
 case RoomCreated():
 return roomCreated(_that.roomCode);case LobbyUpdated():
 return lobbyUpdated(_that.roomCode,_that.players);case GameStarted():
-return gameStarted();case LobbyError():
+return gameStarted(_that.roomCode);case LobbyError():
 return lobbyError(_that.reason);}
 }
 /// A variant of `when` that fallback to returning `null`
@@ -480,12 +480,12 @@ return lobbyError(_that.reason);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( String roomCode)?  roomCreated,TResult? Function( String roomCode,  List<LobbyPlayer> players)?  lobbyUpdated,TResult? Function()?  gameStarted,TResult? Function( String reason)?  lobbyError,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( String roomCode)?  roomCreated,TResult? Function( String roomCode,  List<LobbyPlayer> players)?  lobbyUpdated,TResult? Function( String roomCode)?  gameStarted,TResult? Function( String reason)?  lobbyError,}) {final _that = this;
 switch (_that) {
 case RoomCreated() when roomCreated != null:
 return roomCreated(_that.roomCode);case LobbyUpdated() when lobbyUpdated != null:
 return lobbyUpdated(_that.roomCode,_that.players);case GameStarted() when gameStarted != null:
-return gameStarted();case LobbyError() when lobbyError != null:
+return gameStarted(_that.roomCode);case LobbyError() when lobbyError != null:
 return lobbyError(_that.reason);case _:
   return null;
 
@@ -656,15 +656,20 @@ as List<LobbyPlayer>,
 @JsonSerializable()
 
 class GameStarted extends LobbyMessage {
-  const GameStarted({ String? $type}): $type = $type ?? 'gameStarted',super._();
+  const GameStarted(this.roomCode, { String? $type}): $type = $type ?? 'gameStarted',super._();
   factory GameStarted.fromJson(Map<String, dynamic> json) => _$GameStartedFromJson(json);
 
-
+ final  String roomCode;
 
 @JsonKey(name: 'runtimeType')
 final String $type;
 
 
+/// Create a copy of LobbyMessage
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$GameStartedCopyWith<GameStarted> get copyWith => _$GameStartedCopyWithImpl<GameStarted>(this, _$identity);
 
 @override
 Map<String, dynamic> toJson() {
@@ -673,23 +678,54 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-    return identical(this, other) || (other.runtimeType == runtimeType&&other is GameStarted);
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is GameStarted&&(identical(other.roomCode, roomCode) || other.roomCode == roomCode));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => runtimeType.hashCode;
+int get hashCode {
+    return Object.hash(runtimeType,roomCode);
+}
 
 @override
 String toString() {
-    return 'LobbyMessage.gameStarted()';
+    return 'LobbyMessage.gameStarted(roomCode: $roomCode)';
 }
 
 
 }
 
+/// @nodoc
+abstract mixin class $GameStartedCopyWith<$Res> implements $LobbyMessageCopyWith<$Res> {
+  factory $GameStartedCopyWith(GameStarted value, $Res Function(GameStarted) _then) = _$GameStartedCopyWithImpl;
+@useResult
+$Res call({
+ String roomCode
+});
 
 
+
+
+}
+/// @nodoc
+class _$GameStartedCopyWithImpl<$Res>
+    implements $GameStartedCopyWith<$Res> {
+  _$GameStartedCopyWithImpl(this._self, this._then);
+
+  final GameStarted _self;
+  final $Res Function(GameStarted) _then;
+
+/// Create a copy of LobbyMessage
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') $Res call({Object? roomCode = null,}) {
+  return _then(GameStarted(
+null == roomCode ? _self.roomCode : roomCode // ignore: cast_nullable_to_non_nullable
+as String,
+  ));
+}
+
+
+}
 
 /// @nodoc
 @JsonSerializable()
