@@ -1,0 +1,1 @@
+enum FightSide { attacker, defender}
