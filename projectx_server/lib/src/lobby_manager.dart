@@ -3,17 +3,25 @@ import 'dart:math';
 import 'package:projectx_core/projectx_core.dart';
 
 import 'connection.dart';
+import 'game_room.dart';
 
 class _Room {
   final String code;
   final Map<String, LobbyPlayer> players = {};
+  GameRoom? gameRoom;
+
   _Room(this.code);
+
+  bool get isGameStarted => gameRoom != null;
 }
 
 class LobbyManager {
   final ConnectionRegistry _connections;
   final Map<String, _Room> _rooms = {};
   final _random = Random();
+
+  static const _minPlayers = 4;
+  static const _maxPlayers = 6;
 
   LobbyManager(this._connections);
 
@@ -65,20 +73,23 @@ class LobbyManager {
 
       case JoinRoomAction(:final sessionId, :final roomCode, :final displayName):
         if (_findRoomBySession(sessionId) != null) {
-          /// todo
+          _sendError(sessionId, 'Current session in another room');
           return;
         }
 
         final room = _rooms[roomCode];
         if (room == null) {
-          _connections.send(sessionId,
-              ServerEnvelope.lobby(LobbyError('Room is not found'))
-          );
+          _sendError(sessionId, 'Room is not found');
           return;
         }
 
-        if (room.players.length >= 6) {
-          /// todo
+        if (room.isGameStarted) {
+          _sendError(sessionId, 'Game already started');
+          return;
+        }
+
+        if (room.players.length >= _maxPlayers) {
+          _sendError(sessionId, 'Room is full');
           return;
         }
 
@@ -89,9 +100,13 @@ class LobbyManager {
       case LeaveRoomAction(:final sessionId):
         final room = _findRoomBySession(sessionId);
         if (room == null) {
-          _connections.send(sessionId,
-              ServerEnvelope.lobby(LobbyError('Room is not found'))
-          );
+          _sendError(sessionId, 'Room is not found');
+          return;
+        }
+
+        if(room.isGameStarted) {
+          /// TODO
+          _sendError(sessionId, 'Cannot leave during the game');
           return;
         }
 
@@ -106,40 +121,53 @@ class LobbyManager {
 
       case SetReadyAction(:final sessionId, :final ready):
         final room = _findRoomBySession(sessionId);
-        if (room == null) {
-          _connections.send(sessionId,
-              ServerEnvelope.lobby(LobbyError('Room is not found'))
-          );
+        final player = room?.players[sessionId];
+
+        if (room == null || player == null) {
+          _sendError(sessionId, 'Room is not found');
           return;
         }
-        final player = room.players[sessionId];
-        if (player == null) {
-          _connections.send(sessionId,
-              ServerEnvelope.lobby(LobbyError('Player is not found'))
-          );
+
+        if (room.isGameStarted) {
+          _sendError(sessionId, 'Game already started');
           return;
         }
         room.players[sessionId] = player.copyWith(isReady: ready);
-        _broadcastLobbyUpdated(room);
+        if (_canStart(room)) {
+          _startGame(room);
+        }
+        else {
+          _broadcastLobbyUpdated(room);
+        }
         return;
     }
   }
 
   void _broadcastLobbyUpdated(_Room room) {
-    final message = LobbyMessageEnvelope(
-        LobbyUpdated(room.code, room.players.values.toList())
+    _connections.broadcast(
+        room.players.keys,
+        ServerEnvelope.lobby(LobbyUpdated(room.code, room.players.values.toList()))
     );
-    for(final playerSession in room.players.keys) {
-      _connections.send(playerSession, message);
-    }
   }
 
   String _generateRoomCode() {
     return (100000 + _random.nextInt(999999 - 100000 + 1)).toString();
   }
 
-  bool _maybeStartGame(_Room room) {
-    return (room.players.length >= 4
-        && room.players.values.every((player) => player.isReady == true));
+  void _sendError(String sessionId, String text) {
+    _connections.send(sessionId, ServerEnvelope.lobby(LobbyError(text)));
+  }
+
+  bool _canStart(_Room room) {
+    return
+      room.players.length >= _minPlayers &&
+      room.players.length <= _maxPlayers &&
+      room.players.values.every((player) => player.isReady);
+  }
+
+  void _startGame(_Room room) {
+    final GameRoom gameRoom = GameRoom(room.code, _connections);
+    room.gameRoom = gameRoom;
+    gameRoom.startGame(room.players.keys.toList());
   }
 }
