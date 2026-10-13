@@ -10,6 +10,7 @@ part 'seat_view.g.dart';
 abstract class SeatView with _$SeatView {
   const factory SeatView({
     required CharacterId playerId,
+    required String displayName,
     required bool isConscious,
     required bool isOverboard,
     required bool isDead,

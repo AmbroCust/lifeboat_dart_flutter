@@ -8,6 +8,7 @@ part of 'seat_view.dart';
 
 _SeatView _$SeatViewFromJson(Map<String, dynamic> json) => _SeatView(
   playerId: $enumDecode(_$CharacterIdEnumMap, json['playerId']),
+  displayName: json['displayName'] as String,
   isConscious: json['isConscious'] as bool,
   isOverboard: json['isOverboard'] as bool,
   isDead: json['isDead'] as bool,
@@ -21,6 +22,7 @@ _SeatView _$SeatViewFromJson(Map<String, dynamic> json) => _SeatView(
 
 Map<String, dynamic> _$SeatViewToJson(_SeatView instance) => <String, dynamic>{
   'playerId': _$CharacterIdEnumMap[instance.playerId]!,
+  'displayName': instance.displayName,
   'isConscious': instance.isConscious,
   'isOverboard': instance.isOverboard,
   'isDead': instance.isDead,

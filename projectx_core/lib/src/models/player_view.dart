@@ -17,8 +17,10 @@ abstract class PlayerView with _$PlayerView {
     required GamePhase phase,
     CharacterId? currentPlayerTurnId,
     required List<SeatView> seats,
-    List<Card>? myHand,
-    required List<NavigationCard> navigationTable,
+    required List<Card> myHand,
+    required int navigationTableSize,
+    required CharacterId enemy,
+    required CharacterId friend,
     required int navigationDeckSize,
     required int supplyDeckSize,
     required int seagullMarkers

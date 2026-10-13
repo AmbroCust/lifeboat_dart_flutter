@@ -16,7 +16,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$SeatView {
 
- CharacterId get playerId; bool get isConscious; bool get isOverboard; bool get isDead; int get fatigueMarkers; int get woundMarkers; List<Card> get openItems; int get hiddenSupplyCount;
+ CharacterId get playerId; String get displayName; bool get isConscious; bool get isOverboard; bool get isDead; int get fatigueMarkers; int get woundMarkers; List<Card> get openItems; int get hiddenSupplyCount;
 /// Create a copy of SeatView
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -30,20 +30,20 @@ $SeatViewCopyWith<SeatView> get copyWith => _$SeatViewCopyWithImpl<SeatView>(thi
 @override
 bool operator ==(Object other) {
   final _this = this as SeatView;
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is SeatView&&(identical(other.playerId, _this.playerId) || other.playerId == _this.playerId)&&(identical(other.isConscious, _this.isConscious) || other.isConscious == _this.isConscious)&&(identical(other.isOverboard, _this.isOverboard) || other.isOverboard == _this.isOverboard)&&(identical(other.isDead, _this.isDead) || other.isDead == _this.isDead)&&(identical(other.fatigueMarkers, _this.fatigueMarkers) || other.fatigueMarkers == _this.fatigueMarkers)&&(identical(other.woundMarkers, _this.woundMarkers) || other.woundMarkers == _this.woundMarkers)&&const DeepCollectionEquality().equals(other.openItems, _this.openItems)&&(identical(other.hiddenSupplyCount, _this.hiddenSupplyCount) || other.hiddenSupplyCount == _this.hiddenSupplyCount));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is SeatView&&(identical(other.playerId, _this.playerId) || other.playerId == _this.playerId)&&(identical(other.displayName, _this.displayName) || other.displayName == _this.displayName)&&(identical(other.isConscious, _this.isConscious) || other.isConscious == _this.isConscious)&&(identical(other.isOverboard, _this.isOverboard) || other.isOverboard == _this.isOverboard)&&(identical(other.isDead, _this.isDead) || other.isDead == _this.isDead)&&(identical(other.fatigueMarkers, _this.fatigueMarkers) || other.fatigueMarkers == _this.fatigueMarkers)&&(identical(other.woundMarkers, _this.woundMarkers) || other.woundMarkers == _this.woundMarkers)&&const DeepCollectionEquality().equals(other.openItems, _this.openItems)&&(identical(other.hiddenSupplyCount, _this.hiddenSupplyCount) || other.hiddenSupplyCount == _this.hiddenSupplyCount));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
 int get hashCode {
   final _this = this as SeatView;
-  return Object.hash(runtimeType,_this.playerId,_this.isConscious,_this.isOverboard,_this.isDead,_this.fatigueMarkers,_this.woundMarkers,const DeepCollectionEquality().hash(_this.openItems),_this.hiddenSupplyCount);
+  return Object.hash(runtimeType,_this.playerId,_this.displayName,_this.isConscious,_this.isOverboard,_this.isDead,_this.fatigueMarkers,_this.woundMarkers,const DeepCollectionEquality().hash(_this.openItems),_this.hiddenSupplyCount);
 }
 
 @override
 String toString() {
   final _this = this as SeatView;
-  return 'SeatView(playerId: ${_this.playerId}, isConscious: ${_this.isConscious}, isOverboard: ${_this.isOverboard}, isDead: ${_this.isDead}, fatigueMarkers: ${_this.fatigueMarkers}, woundMarkers: ${_this.woundMarkers}, openItems: ${_this.openItems}, hiddenSupplyCount: ${_this.hiddenSupplyCount})';
+  return 'SeatView(playerId: ${_this.playerId}, displayName: ${_this.displayName}, isConscious: ${_this.isConscious}, isOverboard: ${_this.isOverboard}, isDead: ${_this.isDead}, fatigueMarkers: ${_this.fatigueMarkers}, woundMarkers: ${_this.woundMarkers}, openItems: ${_this.openItems}, hiddenSupplyCount: ${_this.hiddenSupplyCount})';
 }
 
 
@@ -54,7 +54,7 @@ abstract mixin class $SeatViewCopyWith<$Res>  {
   factory $SeatViewCopyWith(SeatView value, $Res Function(SeatView) _then) = _$SeatViewCopyWithImpl;
 @useResult
 $Res call({
- CharacterId playerId, bool isConscious, bool isOverboard, bool isDead, int fatigueMarkers, int woundMarkers, List<Card> openItems, int hiddenSupplyCount
+ CharacterId playerId, String displayName, bool isConscious, bool isOverboard, bool isDead, int fatigueMarkers, int woundMarkers, List<Card> openItems, int hiddenSupplyCount
 });
 
 
@@ -71,10 +71,11 @@ class _$SeatViewCopyWithImpl<$Res>
 
 /// Create a copy of SeatView
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? playerId = null,Object? isConscious = null,Object? isOverboard = null,Object? isDead = null,Object? fatigueMarkers = null,Object? woundMarkers = null,Object? openItems = null,Object? hiddenSupplyCount = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? playerId = null,Object? displayName = null,Object? isConscious = null,Object? isOverboard = null,Object? isDead = null,Object? fatigueMarkers = null,Object? woundMarkers = null,Object? openItems = null,Object? hiddenSupplyCount = null,}) {
   return _then(SeatView(
 playerId: null == playerId ? _self.playerId : playerId // ignore: cast_nullable_to_non_nullable
-as CharacterId,isConscious: null == isConscious ? _self.isConscious : isConscious // ignore: cast_nullable_to_non_nullable
+as CharacterId,displayName: null == displayName ? _self.displayName : displayName // ignore: cast_nullable_to_non_nullable
+as String,isConscious: null == isConscious ? _self.isConscious : isConscious // ignore: cast_nullable_to_non_nullable
 as bool,isOverboard: null == isOverboard ? _self.isOverboard : isOverboard // ignore: cast_nullable_to_non_nullable
 as bool,isDead: null == isDead ? _self.isDead : isDead // ignore: cast_nullable_to_non_nullable
 as bool,fatigueMarkers: null == fatigueMarkers ? _self.fatigueMarkers : fatigueMarkers // ignore: cast_nullable_to_non_nullable
@@ -166,10 +167,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( CharacterId playerId,  bool isConscious,  bool isOverboard,  bool isDead,  int fatigueMarkers,  int woundMarkers,  List<Card> openItems,  int hiddenSupplyCount)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( CharacterId playerId,  String displayName,  bool isConscious,  bool isOverboard,  bool isDead,  int fatigueMarkers,  int woundMarkers,  List<Card> openItems,  int hiddenSupplyCount)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _SeatView() when $default != null:
-return $default(_that.playerId,_that.isConscious,_that.isOverboard,_that.isDead,_that.fatigueMarkers,_that.woundMarkers,_that.openItems,_that.hiddenSupplyCount);case _:
+return $default(_that.playerId,_that.displayName,_that.isConscious,_that.isOverboard,_that.isDead,_that.fatigueMarkers,_that.woundMarkers,_that.openItems,_that.hiddenSupplyCount);case _:
   return orElse();
 
 }
@@ -187,10 +188,10 @@ return $default(_that.playerId,_that.isConscious,_that.isOverboard,_that.isDead,
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( CharacterId playerId,  bool isConscious,  bool isOverboard,  bool isDead,  int fatigueMarkers,  int woundMarkers,  List<Card> openItems,  int hiddenSupplyCount)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( CharacterId playerId,  String displayName,  bool isConscious,  bool isOverboard,  bool isDead,  int fatigueMarkers,  int woundMarkers,  List<Card> openItems,  int hiddenSupplyCount)  $default,) {final _that = this;
 switch (_that) {
 case _SeatView():
-return $default(_that.playerId,_that.isConscious,_that.isOverboard,_that.isDead,_that.fatigueMarkers,_that.woundMarkers,_that.openItems,_that.hiddenSupplyCount);case _:
+return $default(_that.playerId,_that.displayName,_that.isConscious,_that.isOverboard,_that.isDead,_that.fatigueMarkers,_that.woundMarkers,_that.openItems,_that.hiddenSupplyCount);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -207,10 +208,10 @@ return $default(_that.playerId,_that.isConscious,_that.isOverboard,_that.isDead,
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( CharacterId playerId,  bool isConscious,  bool isOverboard,  bool isDead,  int fatigueMarkers,  int woundMarkers,  List<Card> openItems,  int hiddenSupplyCount)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( CharacterId playerId,  String displayName,  bool isConscious,  bool isOverboard,  bool isDead,  int fatigueMarkers,  int woundMarkers,  List<Card> openItems,  int hiddenSupplyCount)?  $default,) {final _that = this;
 switch (_that) {
 case _SeatView() when $default != null:
-return $default(_that.playerId,_that.isConscious,_that.isOverboard,_that.isDead,_that.fatigueMarkers,_that.woundMarkers,_that.openItems,_that.hiddenSupplyCount);case _:
+return $default(_that.playerId,_that.displayName,_that.isConscious,_that.isOverboard,_that.isDead,_that.fatigueMarkers,_that.woundMarkers,_that.openItems,_that.hiddenSupplyCount);case _:
   return null;
 
 }
@@ -222,10 +223,11 @@ return $default(_that.playerId,_that.isConscious,_that.isOverboard,_that.isDead,
 @JsonSerializable()
 
 class _SeatView implements SeatView {
-  const _SeatView({required this.playerId, required this.isConscious, required this.isOverboard, required this.isDead, required this.fatigueMarkers, required this.woundMarkers, required  List<Card> openItems, required this.hiddenSupplyCount}): _openItems = openItems;
+  const _SeatView({required this.playerId, required this.displayName, required this.isConscious, required this.isOverboard, required this.isDead, required this.fatigueMarkers, required this.woundMarkers, required  List<Card> openItems, required this.hiddenSupplyCount}): _openItems = openItems;
   factory _SeatView.fromJson(Map<String, dynamic> json) => _$SeatViewFromJson(json);
 
 @override final  CharacterId playerId;
+@override final  String displayName;
 @override final  bool isConscious;
 @override final  bool isOverboard;
 @override final  bool isDead;
@@ -253,18 +255,18 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-    return identical(this, other) || (other.runtimeType == runtimeType&&other is _SeatView&&(identical(other.playerId, playerId) || other.playerId == playerId)&&(identical(other.isConscious, isConscious) || other.isConscious == isConscious)&&(identical(other.isOverboard, isOverboard) || other.isOverboard == isOverboard)&&(identical(other.isDead, isDead) || other.isDead == isDead)&&(identical(other.fatigueMarkers, fatigueMarkers) || other.fatigueMarkers == fatigueMarkers)&&(identical(other.woundMarkers, woundMarkers) || other.woundMarkers == woundMarkers)&&const DeepCollectionEquality().equals(other.openItems, _openItems)&&(identical(other.hiddenSupplyCount, hiddenSupplyCount) || other.hiddenSupplyCount == hiddenSupplyCount));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _SeatView&&(identical(other.playerId, playerId) || other.playerId == playerId)&&(identical(other.displayName, displayName) || other.displayName == displayName)&&(identical(other.isConscious, isConscious) || other.isConscious == isConscious)&&(identical(other.isOverboard, isOverboard) || other.isOverboard == isOverboard)&&(identical(other.isDead, isDead) || other.isDead == isDead)&&(identical(other.fatigueMarkers, fatigueMarkers) || other.fatigueMarkers == fatigueMarkers)&&(identical(other.woundMarkers, woundMarkers) || other.woundMarkers == woundMarkers)&&const DeepCollectionEquality().equals(other.openItems, _openItems)&&(identical(other.hiddenSupplyCount, hiddenSupplyCount) || other.hiddenSupplyCount == hiddenSupplyCount));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
 int get hashCode {
-    return Object.hash(runtimeType,playerId,isConscious,isOverboard,isDead,fatigueMarkers,woundMarkers,const DeepCollectionEquality().hash(_openItems),hiddenSupplyCount);
+    return Object.hash(runtimeType,playerId,displayName,isConscious,isOverboard,isDead,fatigueMarkers,woundMarkers,const DeepCollectionEquality().hash(_openItems),hiddenSupplyCount);
 }
 
 @override
 String toString() {
-    return 'SeatView(playerId: $playerId, isConscious: $isConscious, isOverboard: $isOverboard, isDead: $isDead, fatigueMarkers: $fatigueMarkers, woundMarkers: $woundMarkers, openItems: $openItems, hiddenSupplyCount: $hiddenSupplyCount)';
+    return 'SeatView(playerId: $playerId, displayName: $displayName, isConscious: $isConscious, isOverboard: $isOverboard, isDead: $isDead, fatigueMarkers: $fatigueMarkers, woundMarkers: $woundMarkers, openItems: $openItems, hiddenSupplyCount: $hiddenSupplyCount)';
 }
 
 
@@ -275,7 +277,7 @@ abstract mixin class _$SeatViewCopyWith<$Res> implements $SeatViewCopyWith<$Res>
   factory _$SeatViewCopyWith(_SeatView value, $Res Function(_SeatView) _then) = __$SeatViewCopyWithImpl;
 @override @useResult
 $Res call({
- CharacterId playerId, bool isConscious, bool isOverboard, bool isDead, int fatigueMarkers, int woundMarkers, List<Card> openItems, int hiddenSupplyCount
+ CharacterId playerId, String displayName, bool isConscious, bool isOverboard, bool isDead, int fatigueMarkers, int woundMarkers, List<Card> openItems, int hiddenSupplyCount
 });
 
 
@@ -292,10 +294,11 @@ class __$SeatViewCopyWithImpl<$Res>
 
 /// Create a copy of SeatView
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? playerId = null,Object? isConscious = null,Object? isOverboard = null,Object? isDead = null,Object? fatigueMarkers = null,Object? woundMarkers = null,Object? openItems = null,Object? hiddenSupplyCount = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? playerId = null,Object? displayName = null,Object? isConscious = null,Object? isOverboard = null,Object? isDead = null,Object? fatigueMarkers = null,Object? woundMarkers = null,Object? openItems = null,Object? hiddenSupplyCount = null,}) {
   return _then(_SeatView(
 playerId: null == playerId ? _self.playerId : playerId // ignore: cast_nullable_to_non_nullable
-as CharacterId,isConscious: null == isConscious ? _self.isConscious : isConscious // ignore: cast_nullable_to_non_nullable
+as CharacterId,displayName: null == displayName ? _self.displayName : displayName // ignore: cast_nullable_to_non_nullable
+as String,isConscious: null == isConscious ? _self.isConscious : isConscious // ignore: cast_nullable_to_non_nullable
 as bool,isOverboard: null == isOverboard ? _self.isOverboard : isOverboard // ignore: cast_nullable_to_non_nullable
 as bool,isDead: null == isDead ? _self.isDead : isDead // ignore: cast_nullable_to_non_nullable
 as bool,fatigueMarkers: null == fatigueMarkers ? _self.fatigueMarkers : fatigueMarkers // ignore: cast_nullable_to_non_nullable

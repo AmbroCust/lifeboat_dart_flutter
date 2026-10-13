@@ -16,12 +16,12 @@ _PlayerView _$PlayerViewFromJson(Map<String, dynamic> json) => _PlayerView(
   seats: (json['seats'] as List<dynamic>)
       .map((e) => SeatView.fromJson(e as Map<String, dynamic>))
       .toList(),
-  myHand: (json['myHand'] as List<dynamic>?)
-      ?.map((e) => Card.fromJson(e as Map<String, dynamic>))
+  myHand: (json['myHand'] as List<dynamic>)
+      .map((e) => Card.fromJson(e as Map<String, dynamic>))
       .toList(),
-  navigationTable: (json['navigationTable'] as List<dynamic>)
-      .map((e) => NavigationCard.fromJson(e as Map<String, dynamic>))
-      .toList(),
+  navigationTableSize: (json['navigationTableSize'] as num).toInt(),
+  enemy: $enumDecode(_$CharacterIdEnumMap, json['enemy']),
+  friend: $enumDecode(_$CharacterIdEnumMap, json['friend']),
   navigationDeckSize: (json['navigationDeckSize'] as num).toInt(),
   supplyDeckSize: (json['supplyDeckSize'] as num).toInt(),
   seagullMarkers: (json['seagullMarkers'] as num).toInt(),
@@ -34,7 +34,9 @@ Map<String, dynamic> _$PlayerViewToJson(_PlayerView instance) =>
       'currentPlayerTurnId': _$CharacterIdEnumMap[instance.currentPlayerTurnId],
       'seats': instance.seats,
       'myHand': instance.myHand,
-      'navigationTable': instance.navigationTable,
+      'navigationTableSize': instance.navigationTableSize,
+      'enemy': _$CharacterIdEnumMap[instance.enemy]!,
+      'friend': _$CharacterIdEnumMap[instance.friend]!,
       'navigationDeckSize': instance.navigationDeckSize,
       'supplyDeckSize': instance.supplyDeckSize,
       'seagullMarkers': instance.seagullMarkers,
