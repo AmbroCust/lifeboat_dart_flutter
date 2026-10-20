@@ -1,3 +1,4 @@
+import 'dart:developer' as developer;
 import 'dart:math';
 
 import 'package:projectx_core/projectx_core.dart';
@@ -24,6 +25,10 @@ class LobbyManager {
   static const _maxPlayers = 6;
 
   LobbyManager(this._connections);
+
+  void routeGame(String sessionId, GameAction action) {
+    _findRoomBySession(sessionId)?.gameRoom?.handleGame(sessionId, action);
+  }
 
   _Room? _findRoomBySession(String sessionId) {
     for(var room in _rooms.values) {
@@ -69,6 +74,7 @@ class LobbyManager {
         _connections.send(sessionId,
             ServerEnvelope.lobby(RoomCreated(room.code))
         );
+        // developer.log('Room created | sessionId {$sessionId} | code ${room.code}');
         return;
 
       case JoinRoomAction(:final sessionId, :final roomCode, :final displayName):
@@ -168,6 +174,12 @@ class LobbyManager {
   void _startGame(_Room room) {
     final GameRoom gameRoom = GameRoom(room.code, _connections);
     room.gameRoom = gameRoom;
+
+    _connections.broadcast(
+      room.players.keys,
+      ServerEnvelope.lobby(LobbyMessage.gameStarted(room.code)),
+    );
+
     gameRoom.startGame(room.players.keys.toList());
   }
 }

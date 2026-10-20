@@ -57,6 +57,109 @@ class GameRoom {
       navigationDeck: navigationDeck,
       navigationTable: [],
     );
+
+    _dealSupplies();
+    _broadcastViews();
+  }
+
+  void handleGame(String sessionId, GameAction action) {
+    final character = sessionCharacters[sessionId];
+
+    if (character == null) return;
+
+    if (_state.phase != GamePhase.playerActions) {
+      _sendError(sessionId, 'Can\'t do this now');
+      return;
+    }
+
+    if (_state.seats[_state.actingSeatIndex].playerId != character) {
+      _sendError(sessionId, 'Not your turn');
+      return;
+    }
+
+    switch (action) {
+      case RestAction():
+        _state.actingSeatIndex = (_state.actingSeatIndex + 1) % _state.seats.length;
+      default:
+        _sendError(sessionId, 'Not realised yet');
+        return;
+      // case RowAction():
+      // case DecideNavigationCards():
+      // case SwapSeatsAction():
+      // case RobAction():
+      // case UseSpecialItemAction():
+      // case PlayCardHiddenAction():
+      // case AcceptDemand():
+    }
+
+    _broadcastViews();
+  }
+
+  SeatView _seatViewFor(Seat seat) {
+    final player = _state.players[seat.playerId]!;
+    final revealed = player.revealedCardIds;
+    return SeatView(
+      playerId: seat.playerId,
+      displayName: seat.playerId.name,
+      isConscious: player.isConscious,
+      isOverboard: player.isOverboard,
+      isDead: player.isDead,
+      fatigueMarkers: player.fatigueMarkers,
+      woundMarkers: player.woundMarkers,
+      openItems: player.hand.where((c) => revealed.contains(c.id)).toList(),
+      hiddenSupplyCount:
+      player.hand.where((c) => !revealed.contains(c.id)).length,
+    );
+  }
+
+  PlayerView _viewFor(CharacterId viewerId) {
+    final me = _state.players[viewerId]!;
+    final revealed = me.revealedCardIds;
+    return PlayerView(
+      viewerId: viewerId,
+      phase: _state.phase,
+      currentPlayerTurnId: _state.phase == GamePhase.playerActions
+          ? _state.seats[_state.actingSeatIndex].playerId
+          : null,
+      seats: _state.seats.map(_seatViewFor).toList(),
+      myHand: me.hand.where((c) => !revealed.contains(c.id)).toList(),
+      navigationTableSize: _state.navigationTable.length,
+      enemy: me.enemy.id,
+      friend: me.friend.id,
+      navigationDeckSize: _state.navigationDeck.length,
+      supplyDeckSize: _state.supplyDeck.length,
+      seagullMarkers: _state.seagullMarkers,
+    );
+  }
+
+  /// TODO
+  void _dealSupplies() {
+    final offered = [
+      for (var i = 0; i < _state.seats.length; i++) _state.supplyDeck.removeLast(),
+    ];
+    for (final seat in _state.seats) {
+      // заглушка: вместо выбора игрок берёт первую из оставшихся
+      _state.players[seat.playerId]!.hand.add(offered.removeAt(0));
+    }
+    _state.phase = GamePhase.playerActions;
+    _state.actingSeatIndex = 0;
+  }
+
+  void _broadcastViews() {
+    for (final entry in sessionCharacters.entries) {
+      final view = _viewFor(entry.value);
+      _connections.send(
+        entry.key,
+        ServerEnvelope.game(GameMessage.playerViewUpdated(view)),
+      );
+    }
+  }
+
+  void _sendError(String sessionId, String text) {
+    _connections.send(
+      sessionId,
+      ServerEnvelope.game(GameMessage.gameError(text)),
+    );
   }
 
   List<bool> _column(int k, int n) {

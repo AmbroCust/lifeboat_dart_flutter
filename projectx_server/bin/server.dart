@@ -13,18 +13,22 @@ void main(List<String> args) async {
   print(jsonEncode(ClientEnvelope.lobbyAction(LobbyAction.createRoom('sessionTest', 'Игрок1')).toJson()));
   final _connections = ConnectionRegistry();
 
+  final lobbyManager = LobbyManager(_connections);
+
   final handler =  webSocketHandler((webSocket, _) {
     print('new connection');
 
     final sessionId = _connections.register(webSocket);
-    final lobbyManager = LobbyManager(_connections);
+    /// TEST
+    // _connections.send(sessionId, ServerEnvelope.lobby(LobbyMessage.connected(sessionId)));
+
 
     webSocket.stream.listen((raw) {
       final envelope = ClientEnvelope.fromJson(jsonDecode(raw) as Map<String, dynamic>);
 
       switch(envelope) {
           case GameEnvelope(:final action):
-            onGameEnvelope(action, sessionId);
+            lobbyManager.routeGame(sessionId, action);
             break;
           case FightEnvelope(:final action):
             onFightEnvelope(action, sessionId);
