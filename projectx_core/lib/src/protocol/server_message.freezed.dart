@@ -68,6 +68,10 @@ GameMessage _$GameMessageFromJson(
           return PlayerViewUpdated.fromJson(
             json
           );
+                case 'gameError':
+          return GameError.fromJson(
+            json
+          );
         
           default:
             throw CheckedFromJsonException(
@@ -126,7 +130,7 @@ extension GameMessagePatterns on GameMessage {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( PlayerFellOverBoard value)?  playerFellOverBoard,TResult Function( PlayerLostConsciousness value)?  playerLostConsciousness,TResult Function( PlayerDied value)?  playerDied,TResult Function( PlayerRescued value)?  playerRescued,TResult Function( ThirstTriggered value)?  thirstTriggered,TResult Function( SeagullMarkerAdded value)?  seagullMarkerAdded,TResult Function( SeagullMarkerRemoved value)?  seagullMarkerRemoved,TResult Function( FightStarted value)?  fightStarted,TResult Function( FightResolved value)?  fightResolved,TResult Function( VoyageEnded value)?  voyageEnded,TResult Function( GameOver value)?  gameOver,TResult Function( ActionRejected value)?  actionRejected,TResult Function( PlayerViewUpdated value)?  playerViewUpdated,required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( PlayerFellOverBoard value)?  playerFellOverBoard,TResult Function( PlayerLostConsciousness value)?  playerLostConsciousness,TResult Function( PlayerDied value)?  playerDied,TResult Function( PlayerRescued value)?  playerRescued,TResult Function( ThirstTriggered value)?  thirstTriggered,TResult Function( SeagullMarkerAdded value)?  seagullMarkerAdded,TResult Function( SeagullMarkerRemoved value)?  seagullMarkerRemoved,TResult Function( FightStarted value)?  fightStarted,TResult Function( FightResolved value)?  fightResolved,TResult Function( VoyageEnded value)?  voyageEnded,TResult Function( GameOver value)?  gameOver,TResult Function( ActionRejected value)?  actionRejected,TResult Function( PlayerViewUpdated value)?  playerViewUpdated,TResult Function( GameError value)?  gameError,required TResult orElse(),}){
 final _that = this;
 switch (_that) {
 case PlayerFellOverBoard() when playerFellOverBoard != null:
@@ -142,7 +146,8 @@ return fightResolved(_that);case VoyageEnded() when voyageEnded != null:
 return voyageEnded(_that);case GameOver() when gameOver != null:
 return gameOver(_that);case ActionRejected() when actionRejected != null:
 return actionRejected(_that);case PlayerViewUpdated() when playerViewUpdated != null:
-return playerViewUpdated(_that);case _:
+return playerViewUpdated(_that);case GameError() when gameError != null:
+return gameError(_that);case _:
   return orElse();
 
 }
@@ -160,7 +165,7 @@ return playerViewUpdated(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( PlayerFellOverBoard value)  playerFellOverBoard,required TResult Function( PlayerLostConsciousness value)  playerLostConsciousness,required TResult Function( PlayerDied value)  playerDied,required TResult Function( PlayerRescued value)  playerRescued,required TResult Function( ThirstTriggered value)  thirstTriggered,required TResult Function( SeagullMarkerAdded value)  seagullMarkerAdded,required TResult Function( SeagullMarkerRemoved value)  seagullMarkerRemoved,required TResult Function( FightStarted value)  fightStarted,required TResult Function( FightResolved value)  fightResolved,required TResult Function( VoyageEnded value)  voyageEnded,required TResult Function( GameOver value)  gameOver,required TResult Function( ActionRejected value)  actionRejected,required TResult Function( PlayerViewUpdated value)  playerViewUpdated,}){
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( PlayerFellOverBoard value)  playerFellOverBoard,required TResult Function( PlayerLostConsciousness value)  playerLostConsciousness,required TResult Function( PlayerDied value)  playerDied,required TResult Function( PlayerRescued value)  playerRescued,required TResult Function( ThirstTriggered value)  thirstTriggered,required TResult Function( SeagullMarkerAdded value)  seagullMarkerAdded,required TResult Function( SeagullMarkerRemoved value)  seagullMarkerRemoved,required TResult Function( FightStarted value)  fightStarted,required TResult Function( FightResolved value)  fightResolved,required TResult Function( VoyageEnded value)  voyageEnded,required TResult Function( GameOver value)  gameOver,required TResult Function( ActionRejected value)  actionRejected,required TResult Function( PlayerViewUpdated value)  playerViewUpdated,required TResult Function( GameError value)  gameError,}){
 final _that = this;
 switch (_that) {
 case PlayerFellOverBoard():
@@ -176,7 +181,8 @@ return fightResolved(_that);case VoyageEnded():
 return voyageEnded(_that);case GameOver():
 return gameOver(_that);case ActionRejected():
 return actionRejected(_that);case PlayerViewUpdated():
-return playerViewUpdated(_that);}
+return playerViewUpdated(_that);case GameError():
+return gameError(_that);}
 }
 /// A variant of `map` that fallback to returning `null`.
 ///
@@ -190,7 +196,7 @@ return playerViewUpdated(_that);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( PlayerFellOverBoard value)?  playerFellOverBoard,TResult? Function( PlayerLostConsciousness value)?  playerLostConsciousness,TResult? Function( PlayerDied value)?  playerDied,TResult? Function( PlayerRescued value)?  playerRescued,TResult? Function( ThirstTriggered value)?  thirstTriggered,TResult? Function( SeagullMarkerAdded value)?  seagullMarkerAdded,TResult? Function( SeagullMarkerRemoved value)?  seagullMarkerRemoved,TResult? Function( FightStarted value)?  fightStarted,TResult? Function( FightResolved value)?  fightResolved,TResult? Function( VoyageEnded value)?  voyageEnded,TResult? Function( GameOver value)?  gameOver,TResult? Function( ActionRejected value)?  actionRejected,TResult? Function( PlayerViewUpdated value)?  playerViewUpdated,}){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( PlayerFellOverBoard value)?  playerFellOverBoard,TResult? Function( PlayerLostConsciousness value)?  playerLostConsciousness,TResult? Function( PlayerDied value)?  playerDied,TResult? Function( PlayerRescued value)?  playerRescued,TResult? Function( ThirstTriggered value)?  thirstTriggered,TResult? Function( SeagullMarkerAdded value)?  seagullMarkerAdded,TResult? Function( SeagullMarkerRemoved value)?  seagullMarkerRemoved,TResult? Function( FightStarted value)?  fightStarted,TResult? Function( FightResolved value)?  fightResolved,TResult? Function( VoyageEnded value)?  voyageEnded,TResult? Function( GameOver value)?  gameOver,TResult? Function( ActionRejected value)?  actionRejected,TResult? Function( PlayerViewUpdated value)?  playerViewUpdated,TResult? Function( GameError value)?  gameError,}){
 final _that = this;
 switch (_that) {
 case PlayerFellOverBoard() when playerFellOverBoard != null:
@@ -206,7 +212,8 @@ return fightResolved(_that);case VoyageEnded() when voyageEnded != null:
 return voyageEnded(_that);case GameOver() when gameOver != null:
 return gameOver(_that);case ActionRejected() when actionRejected != null:
 return actionRejected(_that);case PlayerViewUpdated() when playerViewUpdated != null:
-return playerViewUpdated(_that);case _:
+return playerViewUpdated(_that);case GameError() when gameError != null:
+return gameError(_that);case _:
   return null;
 
 }
@@ -223,7 +230,7 @@ return playerViewUpdated(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( CharacterId playerId,  String cause)?  playerFellOverBoard,TResult Function( CharacterId playerId)?  playerLostConsciousness,TResult Function( CharacterId playerId)?  playerDied,TResult Function( CharacterId playerId)?  playerRescued,TResult Function( CharacterId playerId,  String reason)?  thirstTriggered,TResult Function()?  seagullMarkerAdded,TResult Function()?  seagullMarkerRemoved,TResult Function( CharacterId attackerId,  CharacterId defenderId)?  fightStarted,TResult Function( FightSide winnerSide,  List<String> wounded)?  fightResolved,TResult Function( String reason)?  voyageEnded,TResult Function( Map<String, int> scores)?  gameOver,TResult Function( String reason)?  actionRejected,TResult Function( PlayerView view)?  playerViewUpdated,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( CharacterId playerId,  String cause)?  playerFellOverBoard,TResult Function( CharacterId playerId)?  playerLostConsciousness,TResult Function( CharacterId playerId)?  playerDied,TResult Function( CharacterId playerId)?  playerRescued,TResult Function( CharacterId playerId,  String reason)?  thirstTriggered,TResult Function()?  seagullMarkerAdded,TResult Function()?  seagullMarkerRemoved,TResult Function( CharacterId attackerId,  CharacterId defenderId)?  fightStarted,TResult Function( FightSide winnerSide,  List<String> wounded)?  fightResolved,TResult Function( String reason)?  voyageEnded,TResult Function( Map<String, int> scores)?  gameOver,TResult Function( String reason)?  actionRejected,TResult Function( PlayerView view)?  playerViewUpdated,TResult Function( String reason)?  gameError,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case PlayerFellOverBoard() when playerFellOverBoard != null:
 return playerFellOverBoard(_that.playerId,_that.cause);case PlayerLostConsciousness() when playerLostConsciousness != null:
@@ -238,7 +245,8 @@ return fightResolved(_that.winnerSide,_that.wounded);case VoyageEnded() when voy
 return voyageEnded(_that.reason);case GameOver() when gameOver != null:
 return gameOver(_that.scores);case ActionRejected() when actionRejected != null:
 return actionRejected(_that.reason);case PlayerViewUpdated() when playerViewUpdated != null:
-return playerViewUpdated(_that.view);case _:
+return playerViewUpdated(_that.view);case GameError() when gameError != null:
+return gameError(_that.reason);case _:
   return orElse();
 
 }
@@ -256,7 +264,7 @@ return playerViewUpdated(_that.view);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( CharacterId playerId,  String cause)  playerFellOverBoard,required TResult Function( CharacterId playerId)  playerLostConsciousness,required TResult Function( CharacterId playerId)  playerDied,required TResult Function( CharacterId playerId)  playerRescued,required TResult Function( CharacterId playerId,  String reason)  thirstTriggered,required TResult Function()  seagullMarkerAdded,required TResult Function()  seagullMarkerRemoved,required TResult Function( CharacterId attackerId,  CharacterId defenderId)  fightStarted,required TResult Function( FightSide winnerSide,  List<String> wounded)  fightResolved,required TResult Function( String reason)  voyageEnded,required TResult Function( Map<String, int> scores)  gameOver,required TResult Function( String reason)  actionRejected,required TResult Function( PlayerView view)  playerViewUpdated,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( CharacterId playerId,  String cause)  playerFellOverBoard,required TResult Function( CharacterId playerId)  playerLostConsciousness,required TResult Function( CharacterId playerId)  playerDied,required TResult Function( CharacterId playerId)  playerRescued,required TResult Function( CharacterId playerId,  String reason)  thirstTriggered,required TResult Function()  seagullMarkerAdded,required TResult Function()  seagullMarkerRemoved,required TResult Function( CharacterId attackerId,  CharacterId defenderId)  fightStarted,required TResult Function( FightSide winnerSide,  List<String> wounded)  fightResolved,required TResult Function( String reason)  voyageEnded,required TResult Function( Map<String, int> scores)  gameOver,required TResult Function( String reason)  actionRejected,required TResult Function( PlayerView view)  playerViewUpdated,required TResult Function( String reason)  gameError,}) {final _that = this;
 switch (_that) {
 case PlayerFellOverBoard():
 return playerFellOverBoard(_that.playerId,_that.cause);case PlayerLostConsciousness():
@@ -271,7 +279,8 @@ return fightResolved(_that.winnerSide,_that.wounded);case VoyageEnded():
 return voyageEnded(_that.reason);case GameOver():
 return gameOver(_that.scores);case ActionRejected():
 return actionRejected(_that.reason);case PlayerViewUpdated():
-return playerViewUpdated(_that.view);}
+return playerViewUpdated(_that.view);case GameError():
+return gameError(_that.reason);}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -285,7 +294,7 @@ return playerViewUpdated(_that.view);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( CharacterId playerId,  String cause)?  playerFellOverBoard,TResult? Function( CharacterId playerId)?  playerLostConsciousness,TResult? Function( CharacterId playerId)?  playerDied,TResult? Function( CharacterId playerId)?  playerRescued,TResult? Function( CharacterId playerId,  String reason)?  thirstTriggered,TResult? Function()?  seagullMarkerAdded,TResult? Function()?  seagullMarkerRemoved,TResult? Function( CharacterId attackerId,  CharacterId defenderId)?  fightStarted,TResult? Function( FightSide winnerSide,  List<String> wounded)?  fightResolved,TResult? Function( String reason)?  voyageEnded,TResult? Function( Map<String, int> scores)?  gameOver,TResult? Function( String reason)?  actionRejected,TResult? Function( PlayerView view)?  playerViewUpdated,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( CharacterId playerId,  String cause)?  playerFellOverBoard,TResult? Function( CharacterId playerId)?  playerLostConsciousness,TResult? Function( CharacterId playerId)?  playerDied,TResult? Function( CharacterId playerId)?  playerRescued,TResult? Function( CharacterId playerId,  String reason)?  thirstTriggered,TResult? Function()?  seagullMarkerAdded,TResult? Function()?  seagullMarkerRemoved,TResult? Function( CharacterId attackerId,  CharacterId defenderId)?  fightStarted,TResult? Function( FightSide winnerSide,  List<String> wounded)?  fightResolved,TResult? Function( String reason)?  voyageEnded,TResult? Function( Map<String, int> scores)?  gameOver,TResult? Function( String reason)?  actionRejected,TResult? Function( PlayerView view)?  playerViewUpdated,TResult? Function( String reason)?  gameError,}) {final _that = this;
 switch (_that) {
 case PlayerFellOverBoard() when playerFellOverBoard != null:
 return playerFellOverBoard(_that.playerId,_that.cause);case PlayerLostConsciousness() when playerLostConsciousness != null:
@@ -300,7 +309,8 @@ return fightResolved(_that.winnerSide,_that.wounded);case VoyageEnded() when voy
 return voyageEnded(_that.reason);case GameOver() when gameOver != null:
 return gameOver(_that.scores);case ActionRejected() when actionRejected != null:
 return actionRejected(_that.reason);case PlayerViewUpdated() when playerViewUpdated != null:
-return playerViewUpdated(_that.view);case _:
+return playerViewUpdated(_that.view);case GameError() when gameError != null:
+return gameError(_that.reason);case _:
   return null;
 
 }
@@ -1238,6 +1248,81 @@ $PlayerViewCopyWith<$Res> get view {
     return _then(_self.copyWith(view: value));
   });
 }
+}
+
+/// @nodoc
+@JsonSerializable()
+
+class GameError extends GameMessage {
+  const GameError(this.reason, { String? $type}): $type = $type ?? 'gameError',super._();
+  factory GameError.fromJson(Map<String, dynamic> json) => _$GameErrorFromJson(json);
+
+ final  String reason;
+
+@JsonKey(name: 'runtimeType')
+final String $type;
+
+
+/// Create a copy of GameMessage
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$GameErrorCopyWith<GameError> get copyWith => _$GameErrorCopyWithImpl<GameError>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$GameErrorToJson(this, );
+}
+
+@override
+bool operator ==(Object other) {
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is GameError&&(identical(other.reason, reason) || other.reason == reason));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode {
+    return Object.hash(runtimeType,reason);
+}
+
+@override
+String toString() {
+    return 'GameMessage.gameError(reason: $reason)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $GameErrorCopyWith<$Res> implements $GameMessageCopyWith<$Res> {
+  factory $GameErrorCopyWith(GameError value, $Res Function(GameError) _then) = _$GameErrorCopyWithImpl;
+@useResult
+$Res call({
+ String reason
+});
+
+
+
+
+}
+/// @nodoc
+class _$GameErrorCopyWithImpl<$Res>
+    implements $GameErrorCopyWith<$Res> {
+  _$GameErrorCopyWithImpl(this._self, this._then);
+
+  final GameError _self;
+  final $Res Function(GameError) _then;
+
+/// Create a copy of GameMessage
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') $Res call({Object? reason = null,}) {
+  return _then(GameError(
+null == reason ? _self.reason : reason // ignore: cast_nullable_to_non_nullable
+as String,
+  ));
+}
+
+
 }
 
 // dart format on

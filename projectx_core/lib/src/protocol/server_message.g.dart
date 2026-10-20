@@ -162,3 +162,11 @@ PlayerViewUpdated _$PlayerViewUpdatedFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$PlayerViewUpdatedToJson(PlayerViewUpdated instance) =>
     <String, dynamic>{'view': instance.view, 'runtimeType': instance.$type};
+
+GameError _$GameErrorFromJson(Map<String, dynamic> json) =>
+    GameError(json['reason'] as String, $type: json['runtimeType'] as String?);
+
+Map<String, dynamic> _$GameErrorToJson(GameError instance) => <String, dynamic>{
+  'reason': instance.reason,
+  'runtimeType': instance.$type,
+};

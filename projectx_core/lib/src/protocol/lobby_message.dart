@@ -20,6 +20,8 @@ sealed class LobbyMessage extends ServerMessage with _$LobbyMessage {
   const factory LobbyMessage.lobbyUpdated(String roomCode, List<LobbyPlayer> players) = LobbyUpdated;
   const factory LobbyMessage.gameStarted(String roomCode) = GameStarted;
   const factory LobbyMessage.lobbyError(String reason) = LobbyError;
+  // for test
+  const factory LobbyMessage.connected(String sessionId) = Connected;
 
   factory LobbyMessage.fromJson(Map<String, dynamic> json) => _$LobbyMessageFromJson(json);
 }

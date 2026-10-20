@@ -29,6 +29,7 @@ sealed class GameMessage extends ServerMessage with _$GameMessage {
   const factory GameMessage.gameOver(Map<String, int> scores) = GameOver;
   const factory GameMessage.actionRejected(String reason) = ActionRejected;
   const factory GameMessage.playerViewUpdated(PlayerView view) = PlayerViewUpdated;
+  const factory GameMessage.gameError(String reason) = GameError;
 
   factory GameMessage.fromJson(Map<String, dynamic> json) => _$GameMessageFromJson(json);
 }

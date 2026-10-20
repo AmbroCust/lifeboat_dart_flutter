@@ -61,3 +61,13 @@ LobbyError _$LobbyErrorFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$LobbyErrorToJson(LobbyError instance) =>
     <String, dynamic>{'reason': instance.reason, 'runtimeType': instance.$type};
+
+Connected _$ConnectedFromJson(Map<String, dynamic> json) => Connected(
+  json['sessionId'] as String,
+  $type: json['runtimeType'] as String?,
+);
+
+Map<String, dynamic> _$ConnectedToJson(Connected instance) => <String, dynamic>{
+  'sessionId': instance.sessionId,
+  'runtimeType': instance.$type,
+};

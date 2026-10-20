@@ -308,6 +308,10 @@ LobbyMessage _$LobbyMessageFromJson(
           return LobbyError.fromJson(
             json
           );
+                case 'connected':
+          return Connected.fromJson(
+            json
+          );
         
           default:
             throw CheckedFromJsonException(
@@ -366,14 +370,15 @@ extension LobbyMessagePatterns on LobbyMessage {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( RoomCreated value)?  roomCreated,TResult Function( LobbyUpdated value)?  lobbyUpdated,TResult Function( GameStarted value)?  gameStarted,TResult Function( LobbyError value)?  lobbyError,required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( RoomCreated value)?  roomCreated,TResult Function( LobbyUpdated value)?  lobbyUpdated,TResult Function( GameStarted value)?  gameStarted,TResult Function( LobbyError value)?  lobbyError,TResult Function( Connected value)?  connected,required TResult orElse(),}){
 final _that = this;
 switch (_that) {
 case RoomCreated() when roomCreated != null:
 return roomCreated(_that);case LobbyUpdated() when lobbyUpdated != null:
 return lobbyUpdated(_that);case GameStarted() when gameStarted != null:
 return gameStarted(_that);case LobbyError() when lobbyError != null:
-return lobbyError(_that);case _:
+return lobbyError(_that);case Connected() when connected != null:
+return connected(_that);case _:
   return orElse();
 
 }
@@ -391,14 +396,15 @@ return lobbyError(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( RoomCreated value)  roomCreated,required TResult Function( LobbyUpdated value)  lobbyUpdated,required TResult Function( GameStarted value)  gameStarted,required TResult Function( LobbyError value)  lobbyError,}){
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( RoomCreated value)  roomCreated,required TResult Function( LobbyUpdated value)  lobbyUpdated,required TResult Function( GameStarted value)  gameStarted,required TResult Function( LobbyError value)  lobbyError,required TResult Function( Connected value)  connected,}){
 final _that = this;
 switch (_that) {
 case RoomCreated():
 return roomCreated(_that);case LobbyUpdated():
 return lobbyUpdated(_that);case GameStarted():
 return gameStarted(_that);case LobbyError():
-return lobbyError(_that);}
+return lobbyError(_that);case Connected():
+return connected(_that);}
 }
 /// A variant of `map` that fallback to returning `null`.
 ///
@@ -412,14 +418,15 @@ return lobbyError(_that);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( RoomCreated value)?  roomCreated,TResult? Function( LobbyUpdated value)?  lobbyUpdated,TResult? Function( GameStarted value)?  gameStarted,TResult? Function( LobbyError value)?  lobbyError,}){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( RoomCreated value)?  roomCreated,TResult? Function( LobbyUpdated value)?  lobbyUpdated,TResult? Function( GameStarted value)?  gameStarted,TResult? Function( LobbyError value)?  lobbyError,TResult? Function( Connected value)?  connected,}){
 final _that = this;
 switch (_that) {
 case RoomCreated() when roomCreated != null:
 return roomCreated(_that);case LobbyUpdated() when lobbyUpdated != null:
 return lobbyUpdated(_that);case GameStarted() when gameStarted != null:
 return gameStarted(_that);case LobbyError() when lobbyError != null:
-return lobbyError(_that);case _:
+return lobbyError(_that);case Connected() when connected != null:
+return connected(_that);case _:
   return null;
 
 }
@@ -436,13 +443,14 @@ return lobbyError(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( String roomCode)?  roomCreated,TResult Function( String roomCode,  List<LobbyPlayer> players)?  lobbyUpdated,TResult Function( String roomCode)?  gameStarted,TResult Function( String reason)?  lobbyError,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( String roomCode)?  roomCreated,TResult Function( String roomCode,  List<LobbyPlayer> players)?  lobbyUpdated,TResult Function( String roomCode)?  gameStarted,TResult Function( String reason)?  lobbyError,TResult Function( String sessionId)?  connected,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case RoomCreated() when roomCreated != null:
 return roomCreated(_that.roomCode);case LobbyUpdated() when lobbyUpdated != null:
 return lobbyUpdated(_that.roomCode,_that.players);case GameStarted() when gameStarted != null:
 return gameStarted(_that.roomCode);case LobbyError() when lobbyError != null:
-return lobbyError(_that.reason);case _:
+return lobbyError(_that.reason);case Connected() when connected != null:
+return connected(_that.sessionId);case _:
   return orElse();
 
 }
@@ -460,13 +468,14 @@ return lobbyError(_that.reason);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( String roomCode)  roomCreated,required TResult Function( String roomCode,  List<LobbyPlayer> players)  lobbyUpdated,required TResult Function( String roomCode)  gameStarted,required TResult Function( String reason)  lobbyError,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( String roomCode)  roomCreated,required TResult Function( String roomCode,  List<LobbyPlayer> players)  lobbyUpdated,required TResult Function( String roomCode)  gameStarted,required TResult Function( String reason)  lobbyError,required TResult Function( String sessionId)  connected,}) {final _that = this;
 switch (_that) {
 case RoomCreated():
 return roomCreated(_that.roomCode);case LobbyUpdated():
 return lobbyUpdated(_that.roomCode,_that.players);case GameStarted():
 return gameStarted(_that.roomCode);case LobbyError():
-return lobbyError(_that.reason);}
+return lobbyError(_that.reason);case Connected():
+return connected(_that.sessionId);}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -480,13 +489,14 @@ return lobbyError(_that.reason);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( String roomCode)?  roomCreated,TResult? Function( String roomCode,  List<LobbyPlayer> players)?  lobbyUpdated,TResult? Function( String roomCode)?  gameStarted,TResult? Function( String reason)?  lobbyError,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( String roomCode)?  roomCreated,TResult? Function( String roomCode,  List<LobbyPlayer> players)?  lobbyUpdated,TResult? Function( String roomCode)?  gameStarted,TResult? Function( String reason)?  lobbyError,TResult? Function( String sessionId)?  connected,}) {final _that = this;
 switch (_that) {
 case RoomCreated() when roomCreated != null:
 return roomCreated(_that.roomCode);case LobbyUpdated() when lobbyUpdated != null:
 return lobbyUpdated(_that.roomCode,_that.players);case GameStarted() when gameStarted != null:
 return gameStarted(_that.roomCode);case LobbyError() when lobbyError != null:
-return lobbyError(_that.reason);case _:
+return lobbyError(_that.reason);case Connected() when connected != null:
+return connected(_that.sessionId);case _:
   return null;
 
 }
@@ -795,6 +805,81 @@ class _$LobbyErrorCopyWithImpl<$Res>
 @pragma('vm:prefer-inline') $Res call({Object? reason = null,}) {
   return _then(LobbyError(
 null == reason ? _self.reason : reason // ignore: cast_nullable_to_non_nullable
+as String,
+  ));
+}
+
+
+}
+
+/// @nodoc
+@JsonSerializable()
+
+class Connected extends LobbyMessage {
+  const Connected(this.sessionId, { String? $type}): $type = $type ?? 'connected',super._();
+  factory Connected.fromJson(Map<String, dynamic> json) => _$ConnectedFromJson(json);
+
+ final  String sessionId;
+
+@JsonKey(name: 'runtimeType')
+final String $type;
+
+
+/// Create a copy of LobbyMessage
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$ConnectedCopyWith<Connected> get copyWith => _$ConnectedCopyWithImpl<Connected>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$ConnectedToJson(this, );
+}
+
+@override
+bool operator ==(Object other) {
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is Connected&&(identical(other.sessionId, sessionId) || other.sessionId == sessionId));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode {
+    return Object.hash(runtimeType,sessionId);
+}
+
+@override
+String toString() {
+    return 'LobbyMessage.connected(sessionId: $sessionId)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $ConnectedCopyWith<$Res> implements $LobbyMessageCopyWith<$Res> {
+  factory $ConnectedCopyWith(Connected value, $Res Function(Connected) _then) = _$ConnectedCopyWithImpl;
+@useResult
+$Res call({
+ String sessionId
+});
+
+
+
+
+}
+/// @nodoc
+class _$ConnectedCopyWithImpl<$Res>
+    implements $ConnectedCopyWith<$Res> {
+  _$ConnectedCopyWithImpl(this._self, this._then);
+
+  final Connected _self;
+  final $Res Function(Connected) _then;
+
+/// Create a copy of LobbyMessage
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') $Res call({Object? sessionId = null,}) {
+  return _then(Connected(
+null == sessionId ? _self.sessionId : sessionId // ignore: cast_nullable_to_non_nullable
 as String,
   ));
 }
