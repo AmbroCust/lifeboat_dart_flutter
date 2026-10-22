@@ -74,6 +74,7 @@ class LobbyManager {
         _connections.send(sessionId,
             ServerEnvelope.lobby(RoomCreated(room.code))
         );
+        _broadcastLobbyUpdated(room);
         // developer.log('Room created | sessionId {$sessionId} | code ${room.code}');
         return;
 
