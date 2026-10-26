@@ -20,7 +20,7 @@ void main(List<String> args) async {
 
     final sessionId = _connections.register(webSocket);
     /// TEST
-    // _connections.send(sessionId, ServerEnvelope.lobby(LobbyMessage.connected(sessionId)));
+    _connections.send(sessionId, ServerEnvelope.lobby(LobbyMessage.connected(sessionId)));
 
 
     webSocket.stream.listen((raw) {
