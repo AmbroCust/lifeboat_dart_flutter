@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:projectx/shared/widgets/centered.dart';
 
 import 'bloc/lobby_bloc.dart';
 import 'bloc/lobby_event.dart';
@@ -28,26 +29,28 @@ class _ConnectScreenState extends State<ConnectScreen> {
 
     return Scaffold(
       appBar: AppBar(title: const Text('Lifeboat')),
-      body: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          children: [
-            if (disconnected)
-              const Padding(
-                  padding: EdgeInsets.only(bottom: 16),
-                child: Text('Connection lost', style: TextStyle(color: Colors.red)),
+      body: Centered(
+        child: Padding(
+          padding: const EdgeInsets.all(16),
+          child: Column(
+            children: [
+              if (disconnected)
+                const Padding(
+                    padding: EdgeInsets.only(bottom: 16),
+                  child: Text('Connection lost', style: TextStyle(color: Colors.red)),
+                ),
+              TextField(
+                controller: _url,
+                decoration: const InputDecoration(labelText: 'Server address'),
               ),
-            TextField(
-              controller: _url,
-              decoration: const InputDecoration(labelText: 'Server address'),
-            ),
-            const SizedBox(height: 16),
-            ElevatedButton(
-              onPressed: () =>
-                  context.read<LobbyBloc>().add(LobbyConnectRequested(_url.text.trim())),
-              child: const Text('Connect'),
-            ),
-          ],
+              const SizedBox(height: 16),
+              ElevatedButton(
+                onPressed: () =>
+                    context.read<LobbyBloc>().add(LobbyConnectRequested(_url.text.trim())),
+                child: const Text('Connect'),
+              ),
+            ],
+          ),
         ),
       ),
     );

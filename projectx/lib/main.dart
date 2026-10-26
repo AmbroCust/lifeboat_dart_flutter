@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:projectx/features/lobby/bloc/lobby_bloc.dart';
 import 'package:projectx/features/lobby/lobby_screen.dart';
+import 'package:projectx/themes.dart';
 
 import 'features/lobby/bloc/lobby_state.dart';
 import 'features/lobby/bloc/lobby_event.dart';
@@ -24,7 +25,7 @@ class App extends StatelessWidget {
       child: BlocProvider(
         lazy: false,
         create: (context) => LobbyBloc(context.read<WebSocketService>()),
-        child: const MaterialApp(home: LobbyGate()),
+        child: MaterialApp(theme: appTheme, home: LobbyGate()),
       ),
     );
   }

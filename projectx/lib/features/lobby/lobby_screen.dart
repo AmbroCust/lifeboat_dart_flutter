@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:projectx/shared/widgets/centered.dart';
 
 import 'bloc/lobby_bloc.dart';
 import 'bloc/lobby_event.dart';
@@ -29,8 +30,7 @@ class _LobbyScreenState extends State<LobbyScreen> {
 
     return Scaffold(
       appBar: AppBar(title: const Text('Lobby')),
-      body: Padding(
-        padding: const EdgeInsets.all(16),
+      body: Centered(
         child: switch(state) {
           LobbyInRoomState() => _buildRoom(context, state),
           _ => _buildMenu(context),
@@ -52,7 +52,10 @@ class _LobbyScreenState extends State<LobbyScreen> {
           onPressed:  () => bloc.add(LobbyCreateRoomRequested(_name.text.trim())),
           child: const Text('Create Room'),
         ),
-        const Divider(height: 32),
+        const Padding(
+          padding: EdgeInsets.symmetric(vertical: 16),
+          child: Text('or join by using code', textAlign: TextAlign.center),
+        ),
         TextField(
           controller: _code,
           decoration: const InputDecoration(labelText: 'Room code'),
