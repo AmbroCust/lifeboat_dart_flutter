@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:projectx_core/projectx_core.dart';
 
-import 'action_panel.dart';
-import 'deck_widget.dart';
+import '../widgets/action_panel.dart';
+import '../widgets/deck_widget.dart';
 
 class GameScreen extends StatelessWidget {
   const GameScreen({super.key});
