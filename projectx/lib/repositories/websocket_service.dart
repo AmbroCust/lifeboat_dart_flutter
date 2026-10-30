@@ -18,7 +18,7 @@ class WebSocketService {
       _client.messages.where((envelope) => envelope is LobbyMessageEnvelope)
           .cast<LobbyMessageEnvelope>().map((el) => el.message);
   Stream<GameMessage> get gameMessages =>
-      _client.messages.where((envelope) => envelope is GameMessage)
+      _client.messages.where((envelope) => envelope is GameMessageEnvelope)
           .cast<GameMessageEnvelope>().map((el) => el.message);
   Stream<void> get disconnects => _disconnects.stream;
 
