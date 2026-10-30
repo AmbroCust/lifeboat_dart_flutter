@@ -4,6 +4,8 @@ import 'package:projectx/features/lobby/bloc/lobby_bloc.dart';
 import 'package:projectx/features/lobby/lobby_screen.dart';
 import 'package:projectx/themes.dart';
 
+import 'features/game/bloc/game_bloc.dart';
+import 'features/game/screens/game_screen.dart';
 import 'features/lobby/bloc/lobby_state.dart';
 import 'features/lobby/bloc/lobby_event.dart';
 import 'features/lobby/connect_screen.dart';
@@ -22,9 +24,17 @@ class App extends StatelessWidget {
     return RepositoryProvider(
       create: (_) => WebSocketService(WebSocketClient()),
       dispose: (service) => service.dispose(),
-      child: BlocProvider(
-        lazy: false,
-        create: (context) => LobbyBloc(context.read<WebSocketService>()),
+      child: MultiBlocProvider(
+        providers: [
+          BlocProvider(
+            lazy: false,
+            create: (context) => LobbyBloc(context.read<WebSocketService>()),
+          ),
+          BlocProvider(
+            lazy: false,
+            create: (context) => GameBloc(context.read<WebSocketService>())
+          ),
+        ],
         child: MaterialApp(theme: appTheme, home: LobbyGate()),
       ),
     );
@@ -48,7 +58,7 @@ class LobbyGate extends StatelessWidget {
           LobbyInitialState() || LobbyDisconnectedState() => const ConnectScreen(),
           LobbyConnectedState() || LobbyInRoomState() => const LobbyScreen(),
           LobbyInGameState() =>
-          const Scaffold(body: Center(child: Text('Игра'))),
+          const GameScreen(),
         },
       ),
     );
