@@ -5,7 +5,19 @@ part 'game_event.freezed.dart';
 
 @freezed
 sealed class GameEvent with _$GameEvent {
-  // UI
+  // UI fight actions
+  const factory GameEvent.acceptDemandRequest(String cardId) = GameAcceptDemandRequest;
+  const factory GameEvent.refuseFightRequested() = GameRefuseFightRequested;
+  const factory GameEvent.joinFightRequested(FightSide side) = GameJoinFightRequested;
+  const factory GameEvent.revealWeaponRequested(String cardId) = GameRevealWeaponRequested;
+  const factory GameEvent.passFightRequested() = GamePassFightRequested;
+
+
+  // UI day actions
+  const factory GameEvent.rowRequested() = GameRowRequested;
+  const factory GameEvent.swapRequested(CharacterId target) = GameSwapRequested;
+  const factory GameEvent.robRequested(CharacterId target) = GameRobRequested;
+  const factory GameEvent.useItemRequested(String cardId) = GameUseItemRequestd;
   const factory GameEvent.restRequested() = GameRestRequested;
   const factory GameEvent.errorShown() = GameErrorShown;
 
