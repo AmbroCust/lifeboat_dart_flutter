@@ -56,18 +56,18 @@ extension GameEventPatterns on GameEvent {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( GameAcceptDemandRequest value)?  acceptDemandRequest,TResult Function( GameRefuseFightRequested value)?  refuseFightRequested,TResult Function( GameJoinFightRequested value)?  joinFightRequested,TResult Function( GameRevealWeaponRequested value)?  revealWeaponRequested,TResult Function( GamePassFightRequested value)?  passFightRequested,TResult Function( GameRowRequested value)?  rowRequested,TResult Function( GameSwapRequested value)?  swapRequested,TResult Function( GameRobRequested value)?  robRequested,TResult Function( GameUseItemRequestd value)?  useItemRequested,TResult Function( GameRestRequested value)?  restRequested,TResult Function( GameErrorShown value)?  errorShown,TResult Function( GameMessageReceived value)?  messageReceived,TResult Function( GameConnectionLost value)?  connectionLost,required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( GameAcceptDemandRequested value)?  acceptDemandRequested,TResult Function( GameRefuseFightRequested value)?  refuseFightRequested,TResult Function( GameJoinFightRequested value)?  joinFightRequested,TResult Function( GameRevealWeaponRequested value)?  revealWeaponRequested,TResult Function( GamePassFightRequested value)?  passFightRequested,TResult Function( GameRowRequested value)?  rowRequested,TResult Function( GameSwapRequested value)?  swapRequested,TResult Function( GameRobRequested value)?  robRequested,TResult Function( GameUseItemRequested value)?  useItemRequested,TResult Function( GameRestRequested value)?  restRequested,TResult Function( GameErrorShown value)?  errorShown,TResult Function( GameMessageReceived value)?  messageReceived,TResult Function( GameConnectionLost value)?  connectionLost,required TResult orElse(),}){
 final _that = this;
 switch (_that) {
-case GameAcceptDemandRequest() when acceptDemandRequest != null:
-return acceptDemandRequest(_that);case GameRefuseFightRequested() when refuseFightRequested != null:
+case GameAcceptDemandRequested() when acceptDemandRequested != null:
+return acceptDemandRequested(_that);case GameRefuseFightRequested() when refuseFightRequested != null:
 return refuseFightRequested(_that);case GameJoinFightRequested() when joinFightRequested != null:
 return joinFightRequested(_that);case GameRevealWeaponRequested() when revealWeaponRequested != null:
 return revealWeaponRequested(_that);case GamePassFightRequested() when passFightRequested != null:
 return passFightRequested(_that);case GameRowRequested() when rowRequested != null:
 return rowRequested(_that);case GameSwapRequested() when swapRequested != null:
 return swapRequested(_that);case GameRobRequested() when robRequested != null:
-return robRequested(_that);case GameUseItemRequestd() when useItemRequested != null:
+return robRequested(_that);case GameUseItemRequested() when useItemRequested != null:
 return useItemRequested(_that);case GameRestRequested() when restRequested != null:
 return restRequested(_that);case GameErrorShown() when errorShown != null:
 return errorShown(_that);case GameMessageReceived() when messageReceived != null:
@@ -90,18 +90,18 @@ return connectionLost(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( GameAcceptDemandRequest value)  acceptDemandRequest,required TResult Function( GameRefuseFightRequested value)  refuseFightRequested,required TResult Function( GameJoinFightRequested value)  joinFightRequested,required TResult Function( GameRevealWeaponRequested value)  revealWeaponRequested,required TResult Function( GamePassFightRequested value)  passFightRequested,required TResult Function( GameRowRequested value)  rowRequested,required TResult Function( GameSwapRequested value)  swapRequested,required TResult Function( GameRobRequested value)  robRequested,required TResult Function( GameUseItemRequestd value)  useItemRequested,required TResult Function( GameRestRequested value)  restRequested,required TResult Function( GameErrorShown value)  errorShown,required TResult Function( GameMessageReceived value)  messageReceived,required TResult Function( GameConnectionLost value)  connectionLost,}){
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( GameAcceptDemandRequested value)  acceptDemandRequested,required TResult Function( GameRefuseFightRequested value)  refuseFightRequested,required TResult Function( GameJoinFightRequested value)  joinFightRequested,required TResult Function( GameRevealWeaponRequested value)  revealWeaponRequested,required TResult Function( GamePassFightRequested value)  passFightRequested,required TResult Function( GameRowRequested value)  rowRequested,required TResult Function( GameSwapRequested value)  swapRequested,required TResult Function( GameRobRequested value)  robRequested,required TResult Function( GameUseItemRequested value)  useItemRequested,required TResult Function( GameRestRequested value)  restRequested,required TResult Function( GameErrorShown value)  errorShown,required TResult Function( GameMessageReceived value)  messageReceived,required TResult Function( GameConnectionLost value)  connectionLost,}){
 final _that = this;
 switch (_that) {
-case GameAcceptDemandRequest():
-return acceptDemandRequest(_that);case GameRefuseFightRequested():
+case GameAcceptDemandRequested():
+return acceptDemandRequested(_that);case GameRefuseFightRequested():
 return refuseFightRequested(_that);case GameJoinFightRequested():
 return joinFightRequested(_that);case GameRevealWeaponRequested():
 return revealWeaponRequested(_that);case GamePassFightRequested():
 return passFightRequested(_that);case GameRowRequested():
 return rowRequested(_that);case GameSwapRequested():
 return swapRequested(_that);case GameRobRequested():
-return robRequested(_that);case GameUseItemRequestd():
+return robRequested(_that);case GameUseItemRequested():
 return useItemRequested(_that);case GameRestRequested():
 return restRequested(_that);case GameErrorShown():
 return errorShown(_that);case GameMessageReceived():
@@ -120,18 +120,18 @@ return connectionLost(_that);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( GameAcceptDemandRequest value)?  acceptDemandRequest,TResult? Function( GameRefuseFightRequested value)?  refuseFightRequested,TResult? Function( GameJoinFightRequested value)?  joinFightRequested,TResult? Function( GameRevealWeaponRequested value)?  revealWeaponRequested,TResult? Function( GamePassFightRequested value)?  passFightRequested,TResult? Function( GameRowRequested value)?  rowRequested,TResult? Function( GameSwapRequested value)?  swapRequested,TResult? Function( GameRobRequested value)?  robRequested,TResult? Function( GameUseItemRequestd value)?  useItemRequested,TResult? Function( GameRestRequested value)?  restRequested,TResult? Function( GameErrorShown value)?  errorShown,TResult? Function( GameMessageReceived value)?  messageReceived,TResult? Function( GameConnectionLost value)?  connectionLost,}){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( GameAcceptDemandRequested value)?  acceptDemandRequested,TResult? Function( GameRefuseFightRequested value)?  refuseFightRequested,TResult? Function( GameJoinFightRequested value)?  joinFightRequested,TResult? Function( GameRevealWeaponRequested value)?  revealWeaponRequested,TResult? Function( GamePassFightRequested value)?  passFightRequested,TResult? Function( GameRowRequested value)?  rowRequested,TResult? Function( GameSwapRequested value)?  swapRequested,TResult? Function( GameRobRequested value)?  robRequested,TResult? Function( GameUseItemRequested value)?  useItemRequested,TResult? Function( GameRestRequested value)?  restRequested,TResult? Function( GameErrorShown value)?  errorShown,TResult? Function( GameMessageReceived value)?  messageReceived,TResult? Function( GameConnectionLost value)?  connectionLost,}){
 final _that = this;
 switch (_that) {
-case GameAcceptDemandRequest() when acceptDemandRequest != null:
-return acceptDemandRequest(_that);case GameRefuseFightRequested() when refuseFightRequested != null:
+case GameAcceptDemandRequested() when acceptDemandRequested != null:
+return acceptDemandRequested(_that);case GameRefuseFightRequested() when refuseFightRequested != null:
 return refuseFightRequested(_that);case GameJoinFightRequested() when joinFightRequested != null:
 return joinFightRequested(_that);case GameRevealWeaponRequested() when revealWeaponRequested != null:
 return revealWeaponRequested(_that);case GamePassFightRequested() when passFightRequested != null:
 return passFightRequested(_that);case GameRowRequested() when rowRequested != null:
 return rowRequested(_that);case GameSwapRequested() when swapRequested != null:
 return swapRequested(_that);case GameRobRequested() when robRequested != null:
-return robRequested(_that);case GameUseItemRequestd() when useItemRequested != null:
+return robRequested(_that);case GameUseItemRequested() when useItemRequested != null:
 return useItemRequested(_that);case GameRestRequested() when restRequested != null:
 return restRequested(_that);case GameErrorShown() when errorShown != null:
 return errorShown(_that);case GameMessageReceived() when messageReceived != null:
@@ -153,17 +153,17 @@ return connectionLost(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( String cardId)?  acceptDemandRequest,TResult Function()?  refuseFightRequested,TResult Function( FightSide side)?  joinFightRequested,TResult Function( String cardId)?  revealWeaponRequested,TResult Function()?  passFightRequested,TResult Function()?  rowRequested,TResult Function( CharacterId target)?  swapRequested,TResult Function( CharacterId target)?  robRequested,TResult Function( String cardId)?  useItemRequested,TResult Function()?  restRequested,TResult Function()?  errorShown,TResult Function( GameMessage message)?  messageReceived,TResult Function()?  connectionLost,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( String cardId)?  acceptDemandRequested,TResult Function()?  refuseFightRequested,TResult Function( FightSide side)?  joinFightRequested,TResult Function( String cardId)?  revealWeaponRequested,TResult Function()?  passFightRequested,TResult Function()?  rowRequested,TResult Function( CharacterId target)?  swapRequested,TResult Function( CharacterId target)?  robRequested,TResult Function( String cardId)?  useItemRequested,TResult Function()?  restRequested,TResult Function()?  errorShown,TResult Function( GameMessage message)?  messageReceived,TResult Function()?  connectionLost,required TResult orElse(),}) {final _that = this;
 switch (_that) {
-case GameAcceptDemandRequest() when acceptDemandRequest != null:
-return acceptDemandRequest(_that.cardId);case GameRefuseFightRequested() when refuseFightRequested != null:
+case GameAcceptDemandRequested() when acceptDemandRequested != null:
+return acceptDemandRequested(_that.cardId);case GameRefuseFightRequested() when refuseFightRequested != null:
 return refuseFightRequested();case GameJoinFightRequested() when joinFightRequested != null:
 return joinFightRequested(_that.side);case GameRevealWeaponRequested() when revealWeaponRequested != null:
 return revealWeaponRequested(_that.cardId);case GamePassFightRequested() when passFightRequested != null:
 return passFightRequested();case GameRowRequested() when rowRequested != null:
 return rowRequested();case GameSwapRequested() when swapRequested != null:
 return swapRequested(_that.target);case GameRobRequested() when robRequested != null:
-return robRequested(_that.target);case GameUseItemRequestd() when useItemRequested != null:
+return robRequested(_that.target);case GameUseItemRequested() when useItemRequested != null:
 return useItemRequested(_that.cardId);case GameRestRequested() when restRequested != null:
 return restRequested();case GameErrorShown() when errorShown != null:
 return errorShown();case GameMessageReceived() when messageReceived != null:
@@ -186,17 +186,17 @@ return connectionLost();case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( String cardId)  acceptDemandRequest,required TResult Function()  refuseFightRequested,required TResult Function( FightSide side)  joinFightRequested,required TResult Function( String cardId)  revealWeaponRequested,required TResult Function()  passFightRequested,required TResult Function()  rowRequested,required TResult Function( CharacterId target)  swapRequested,required TResult Function( CharacterId target)  robRequested,required TResult Function( String cardId)  useItemRequested,required TResult Function()  restRequested,required TResult Function()  errorShown,required TResult Function( GameMessage message)  messageReceived,required TResult Function()  connectionLost,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( String cardId)  acceptDemandRequested,required TResult Function()  refuseFightRequested,required TResult Function( FightSide side)  joinFightRequested,required TResult Function( String cardId)  revealWeaponRequested,required TResult Function()  passFightRequested,required TResult Function()  rowRequested,required TResult Function( CharacterId target)  swapRequested,required TResult Function( CharacterId target)  robRequested,required TResult Function( String cardId)  useItemRequested,required TResult Function()  restRequested,required TResult Function()  errorShown,required TResult Function( GameMessage message)  messageReceived,required TResult Function()  connectionLost,}) {final _that = this;
 switch (_that) {
-case GameAcceptDemandRequest():
-return acceptDemandRequest(_that.cardId);case GameRefuseFightRequested():
+case GameAcceptDemandRequested():
+return acceptDemandRequested(_that.cardId);case GameRefuseFightRequested():
 return refuseFightRequested();case GameJoinFightRequested():
 return joinFightRequested(_that.side);case GameRevealWeaponRequested():
 return revealWeaponRequested(_that.cardId);case GamePassFightRequested():
 return passFightRequested();case GameRowRequested():
 return rowRequested();case GameSwapRequested():
 return swapRequested(_that.target);case GameRobRequested():
-return robRequested(_that.target);case GameUseItemRequestd():
+return robRequested(_that.target);case GameUseItemRequested():
 return useItemRequested(_that.cardId);case GameRestRequested():
 return restRequested();case GameErrorShown():
 return errorShown();case GameMessageReceived():
@@ -215,17 +215,17 @@ return connectionLost();}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( String cardId)?  acceptDemandRequest,TResult? Function()?  refuseFightRequested,TResult? Function( FightSide side)?  joinFightRequested,TResult? Function( String cardId)?  revealWeaponRequested,TResult? Function()?  passFightRequested,TResult? Function()?  rowRequested,TResult? Function( CharacterId target)?  swapRequested,TResult? Function( CharacterId target)?  robRequested,TResult? Function( String cardId)?  useItemRequested,TResult? Function()?  restRequested,TResult? Function()?  errorShown,TResult? Function( GameMessage message)?  messageReceived,TResult? Function()?  connectionLost,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( String cardId)?  acceptDemandRequested,TResult? Function()?  refuseFightRequested,TResult? Function( FightSide side)?  joinFightRequested,TResult? Function( String cardId)?  revealWeaponRequested,TResult? Function()?  passFightRequested,TResult? Function()?  rowRequested,TResult? Function( CharacterId target)?  swapRequested,TResult? Function( CharacterId target)?  robRequested,TResult? Function( String cardId)?  useItemRequested,TResult? Function()?  restRequested,TResult? Function()?  errorShown,TResult? Function( GameMessage message)?  messageReceived,TResult? Function()?  connectionLost,}) {final _that = this;
 switch (_that) {
-case GameAcceptDemandRequest() when acceptDemandRequest != null:
-return acceptDemandRequest(_that.cardId);case GameRefuseFightRequested() when refuseFightRequested != null:
+case GameAcceptDemandRequested() when acceptDemandRequested != null:
+return acceptDemandRequested(_that.cardId);case GameRefuseFightRequested() when refuseFightRequested != null:
 return refuseFightRequested();case GameJoinFightRequested() when joinFightRequested != null:
 return joinFightRequested(_that.side);case GameRevealWeaponRequested() when revealWeaponRequested != null:
 return revealWeaponRequested(_that.cardId);case GamePassFightRequested() when passFightRequested != null:
 return passFightRequested();case GameRowRequested() when rowRequested != null:
 return rowRequested();case GameSwapRequested() when swapRequested != null:
 return swapRequested(_that.target);case GameRobRequested() when robRequested != null:
-return robRequested(_that.target);case GameUseItemRequestd() when useItemRequested != null:
+return robRequested(_that.target);case GameUseItemRequested() when useItemRequested != null:
 return useItemRequested(_that.cardId);case GameRestRequested() when restRequested != null:
 return restRequested();case GameErrorShown() when errorShown != null:
 return errorShown();case GameMessageReceived() when messageReceived != null:
@@ -241,8 +241,8 @@ return connectionLost();case _:
 /// @nodoc
 
 
-class GameAcceptDemandRequest implements GameEvent {
-  const GameAcceptDemandRequest(this.cardId);
+class GameAcceptDemandRequested implements GameEvent {
+  const GameAcceptDemandRequested(this.cardId);
   
 
  final  String cardId;
@@ -251,13 +251,13 @@ class GameAcceptDemandRequest implements GameEvent {
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
-$GameAcceptDemandRequestCopyWith<GameAcceptDemandRequest> get copyWith => _$GameAcceptDemandRequestCopyWithImpl<GameAcceptDemandRequest>(this, _$identity);
+$GameAcceptDemandRequestedCopyWith<GameAcceptDemandRequested> get copyWith => _$GameAcceptDemandRequestedCopyWithImpl<GameAcceptDemandRequested>(this, _$identity);
 
 
 
 @override
 bool operator ==(Object other) {
-    return identical(this, other) || (other.runtimeType == runtimeType&&other is GameAcceptDemandRequest&&(identical(other.cardId, cardId) || other.cardId == cardId));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is GameAcceptDemandRequested&&(identical(other.cardId, cardId) || other.cardId == cardId));
 }
 
 
@@ -268,15 +268,15 @@ int get hashCode {
 
 @override
 String toString() {
-    return 'GameEvent.acceptDemandRequest(cardId: $cardId)';
+    return 'GameEvent.acceptDemandRequested(cardId: $cardId)';
 }
 
 
 }
 
 /// @nodoc
-abstract mixin class $GameAcceptDemandRequestCopyWith<$Res> implements $GameEventCopyWith<$Res> {
-  factory $GameAcceptDemandRequestCopyWith(GameAcceptDemandRequest value, $Res Function(GameAcceptDemandRequest) _then) = _$GameAcceptDemandRequestCopyWithImpl;
+abstract mixin class $GameAcceptDemandRequestedCopyWith<$Res> implements $GameEventCopyWith<$Res> {
+  factory $GameAcceptDemandRequestedCopyWith(GameAcceptDemandRequested value, $Res Function(GameAcceptDemandRequested) _then) = _$GameAcceptDemandRequestedCopyWithImpl;
 @useResult
 $Res call({
  String cardId
@@ -287,17 +287,17 @@ $Res call({
 
 }
 /// @nodoc
-class _$GameAcceptDemandRequestCopyWithImpl<$Res>
-    implements $GameAcceptDemandRequestCopyWith<$Res> {
-  _$GameAcceptDemandRequestCopyWithImpl(this._self, this._then);
+class _$GameAcceptDemandRequestedCopyWithImpl<$Res>
+    implements $GameAcceptDemandRequestedCopyWith<$Res> {
+  _$GameAcceptDemandRequestedCopyWithImpl(this._self, this._then);
 
-  final GameAcceptDemandRequest _self;
-  final $Res Function(GameAcceptDemandRequest) _then;
+  final GameAcceptDemandRequested _self;
+  final $Res Function(GameAcceptDemandRequested) _then;
 
 /// Create a copy of GameEvent
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') $Res call({Object? cardId = null,}) {
-  return _then(GameAcceptDemandRequest(
+  return _then(GameAcceptDemandRequested(
 null == cardId ? _self.cardId : cardId // ignore: cast_nullable_to_non_nullable
 as String,
   ));
@@ -677,8 +677,8 @@ as CharacterId,
 /// @nodoc
 
 
-class GameUseItemRequestd implements GameEvent {
-  const GameUseItemRequestd(this.cardId);
+class GameUseItemRequested implements GameEvent {
+  const GameUseItemRequested(this.cardId);
   
 
  final  String cardId;
@@ -687,13 +687,13 @@ class GameUseItemRequestd implements GameEvent {
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
-$GameUseItemRequestdCopyWith<GameUseItemRequestd> get copyWith => _$GameUseItemRequestdCopyWithImpl<GameUseItemRequestd>(this, _$identity);
+$GameUseItemRequestedCopyWith<GameUseItemRequested> get copyWith => _$GameUseItemRequestedCopyWithImpl<GameUseItemRequested>(this, _$identity);
 
 
 
 @override
 bool operator ==(Object other) {
-    return identical(this, other) || (other.runtimeType == runtimeType&&other is GameUseItemRequestd&&(identical(other.cardId, cardId) || other.cardId == cardId));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is GameUseItemRequested&&(identical(other.cardId, cardId) || other.cardId == cardId));
 }
 
 
@@ -711,8 +711,8 @@ String toString() {
 }
 
 /// @nodoc
-abstract mixin class $GameUseItemRequestdCopyWith<$Res> implements $GameEventCopyWith<$Res> {
-  factory $GameUseItemRequestdCopyWith(GameUseItemRequestd value, $Res Function(GameUseItemRequestd) _then) = _$GameUseItemRequestdCopyWithImpl;
+abstract mixin class $GameUseItemRequestedCopyWith<$Res> implements $GameEventCopyWith<$Res> {
+  factory $GameUseItemRequestedCopyWith(GameUseItemRequested value, $Res Function(GameUseItemRequested) _then) = _$GameUseItemRequestedCopyWithImpl;
 @useResult
 $Res call({
  String cardId
@@ -723,17 +723,17 @@ $Res call({
 
 }
 /// @nodoc
-class _$GameUseItemRequestdCopyWithImpl<$Res>
-    implements $GameUseItemRequestdCopyWith<$Res> {
-  _$GameUseItemRequestdCopyWithImpl(this._self, this._then);
+class _$GameUseItemRequestedCopyWithImpl<$Res>
+    implements $GameUseItemRequestedCopyWith<$Res> {
+  _$GameUseItemRequestedCopyWithImpl(this._self, this._then);
 
-  final GameUseItemRequestd _self;
-  final $Res Function(GameUseItemRequestd) _then;
+  final GameUseItemRequested _self;
+  final $Res Function(GameUseItemRequested) _then;
 
 /// Create a copy of GameEvent
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') $Res call({Object? cardId = null,}) {
-  return _then(GameUseItemRequestd(
+  return _then(GameUseItemRequested(
 null == cardId ? _self.cardId : cardId // ignore: cast_nullable_to_non_nullable
 as String,
   ));

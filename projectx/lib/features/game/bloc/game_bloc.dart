@@ -13,6 +13,25 @@ class GameBloc extends Bloc<GameEvent, GameViewState> {
   late final StreamSubscription<void> _disconnectsSub;
 
   GameBloc(this._service) : super(const GameInitialState()) {
+    on<GameRowRequested>((e, emit) =>
+        _sendAsMe(emit, (me) => ClientEnvelope.gameAction(GameAction.row(me))));
+    on<GameSwapRequested>((e, emit) =>
+        _sendAsMe(emit, (me) => ClientEnvelope.gameAction(GameAction.swap(me, e.target))));
+    on<GameRobRequested>((e, emit) =>
+        _sendAsMe(emit, (me) => ClientEnvelope.gameAction(GameAction.rob(me, e.target))));
+    on<GameUseItemRequested>((e, emit) =>
+        _sendAsMe(emit, (me) => ClientEnvelope.gameAction(GameAction.useSpecialItem(me, e.cardId))));
+    on<GameAcceptDemandRequested>((e, emit) =>
+        _sendAsMe(emit, (me) => ClientEnvelope.gameAction(GameAction.acceptDemand(me, e.cardId))));
+    on<GameRefuseFightRequested>((e, emit) =>
+        _sendAsMe(emit, (me) => ClientEnvelope.fightAction(FightAction.refuseAndFight(me))));
+    on<GameJoinFightRequested>((e, emit) =>
+        _sendAsMe(emit, (me) => ClientEnvelope.fightAction(FightAction.joinAndFight(me, e.side))));
+    on<GameRevealWeaponRequested>((e, emit) =>
+        _sendAsMe(emit, (me) => ClientEnvelope.fightAction(FightAction.revealWeapon(me, e.cardId))));
+    on<GamePassFightRequested>((e, emit) =>
+        _sendAsMe(emit, (me) => ClientEnvelope.fightAction(FightAction.passFight(me))));
+
     on<GameMessageReceived>(_onGameMessageReceived);
     on<GameConnectionLost>(_onGameConnectionLost);
     on<GameRestRequested>(_onGameRestRequested);
@@ -25,7 +44,6 @@ class GameBloc extends Bloc<GameEvent, GameViewState> {
   void _onGameMessageReceived(GameMessageReceived event, Emitter<GameViewState> emit ) {
     final current = state;
 
-    print('GameBloc got: ${event.message}');
     switch(event.message) {
       case PlayerViewUpdated(:final view):
         if (current is GameEndedState) return;
@@ -87,6 +105,12 @@ class GameBloc extends Bloc<GameEvent, GameViewState> {
       emit(const GameDisconnectedState());
       return false;
     }
+  }
+
+    void _sendAsMe(Emitter<GameViewState> emit, ClientEnvelope Function(CharacterId me) build) {
+    final current = state;
+    if (current is! GamePlayingState) return;
+    _trySend(build(current.view.viewerId), emit);
   }
 
   @override
