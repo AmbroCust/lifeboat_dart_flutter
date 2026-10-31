@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:projectx/shared/widgets/centered.dart';
 
@@ -81,10 +82,28 @@ class _LobbyScreenState extends State<LobbyScreen> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          'Room: ${state.roomCode}',
-          style: Theme.of(context).textTheme.headlineSmall,
-        ),
+        Row(children: [
+          Text(
+            'Room: ${state.roomCode}',
+            style: Theme.of(context).textTheme.headlineSmall,
+          ),
+          const SizedBox(width: 8),
+          IconButton(
+              onPressed: () async {
+                await Clipboard.setData(ClipboardData(text: state.roomCode));
+
+                if (context.mounted) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                      content: Text('Copied'),
+                      duration: Duration(seconds: 2),
+                    )
+                  );
+                }
+              },
+              icon: const Icon(Icons.copy)
+          ),
+        ],),
         const SizedBox(height: 8),
         Text(
           'Players in room: ${state.players.length}'
